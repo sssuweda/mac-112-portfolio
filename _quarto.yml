@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "COMP/STAT112 Workspace"
+  author: "Replace with Your Name"
+  date: "8/20/2024"
+  reader-mode: true
+  
+  chapters:
+    - index.qmd
+
+    - part: activities/activities.qmd
+      chapters: 
+      - activities/activity-01.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-line-numbers: true
+    code-tools: true
+
+
+

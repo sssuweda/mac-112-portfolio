@@ -1,0 +1,22 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "COMP/STAT112 Workspace",
+    "section": "",
+    "text": "Introduction\nThis is my workspace for COMP/STAT112 course taken at Macalester College in Fall 2024. Please, use the side bar for navigation.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "activities/activities.html",
+    "href": "activities/activities.html",
+    "title": "Activities",
+    "section": "",
+    "text": "All activities live here.",
+    "crumbs": [
+      "Activities"
+    ]
+  }
+]

@@ -1,0 +1,5 @@
+---
+title: "Activities"
+---
+
+All activities live here.
