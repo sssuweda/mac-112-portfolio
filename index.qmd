@@ -4,3 +4,4 @@ This is my workspace for COMP/STAT112 course taken at [Macalester College](https
 
 Added more content for test purposes.
 
+Instructor edited this file after a student edited the file for test purposes.
