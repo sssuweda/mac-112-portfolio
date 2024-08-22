@@ -1,3 +1,6 @@
 # Introduction {.unnumbered}
 
 This is my workspace for COMP/STAT112 course taken at [Macalester College](https://www.macalester.edu/) in Fall 2024.  Please, use the side bar for navigation.
+
+Added more content for test purposes.
+
