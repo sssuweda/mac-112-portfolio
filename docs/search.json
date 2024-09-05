@@ -2,21 +2,31 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "COMP/STAT112 Workspace",
+    "title": "COMP/STAT112 Notebook",
     "section": "",
-    "text": "Introduction\nThis is my workspace for COMP/STAT112 course taken at Macalester College in Fall 2024. Please, use the side bar for navigation.",
+    "text": "Introduction\nThis is my online notebook for COMP/STAT112 course taken at Macalester College. Please, use the side bar on the left for navigation.",
     "crumbs": [
       "Introduction"
     ]
   },
   {
-    "objectID": "activities/activities.html",
-    "href": "activities/activities.html",
+    "objectID": "activities/README.html",
+    "href": "activities/README.html",
     "title": "Activities",
     "section": "",
     "text": "All activities live here.",
     "crumbs": [
       "Activities"
+    ]
+  },
+  {
+    "objectID": "notes/README.html",
+    "href": "notes/README.html",
+    "title": "Notes",
+    "section": "",
+    "text": "All notes live here.",
+    "crumbs": [
+      "Notes"
     ]
   }
 ]
