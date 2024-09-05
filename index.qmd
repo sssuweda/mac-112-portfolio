@@ -1,9 +1,3 @@
 # Introduction {.unnumbered}
 
-This is my workspace for COMP/STAT112 course taken at [Macalester College](https://www.macalester.edu/) in Fall 2024.  Please, use the side bar for navigation.
-
-Added more content for test purposes.
-
-Instructor edited this file after a student edited the file for test purposes.
-
-Check if I could import the changed in the cloned repo to the based repo for forking.
+This is my online notebook for COMP/STAT112 course taken at [Macalester College](https://www.macalester.edu/).  Please, use the side bar on the left for navigation.
