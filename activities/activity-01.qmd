@@ -1,4 +1,90 @@
 ---
-title: "Activity 01"
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
+title: "Activity/Homework 01"
+author: Suweda Said
+
+# Import and name the dataset (Football)
+
+football <-
+read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-11-29/worldcups.csv")
+
+
+# Print the first 6 rows of the dataset
+
+head(football)
+
+Output:
+ 
+  year        host       winner         second   third       fourth goals_scored
+1 1930     Uruguay      Uruguay      Argentina     USA   Yugoslavia           70
+2 1934       Italy        Italy Czechoslovakia Germany      Austria           70
+3 1938      France        Italy        Hungary  Brazil       Sweden           84
+4 1950      Brazil      Uruguay         Brazil  Sweden        Spain           88
+5 1954 Switzerland West Germany        Hungary Austria      Uruguay          140
+6 1958      Sweden       Brazil         Sweden  France West Germany          126
+  teams games attendance
+1    13    18     434000
+2    16    17     395000
+3    15    18     483000
+4    13    22    1337000
+5    16    26     943000
+6    16    35     868000
+
+#How many years of data do we have? 21 years 
+#And how many measurements do we have on each year? 10 measurements
+
+str(football)
+
+Output:
+'data.frame':	21 obs. of  10 variables:
+ $ year        : int  1930 1934 1938 1950 1954 1958 1962 1966 1970 1974 ...
+ $ host        : chr  "Uruguay" "Italy" "France" "Brazil" ...
+ $ winner      : chr  "Uruguay" "Italy" "Italy" "Uruguay" ...
+ $ second      : chr  "Argentina" "Czechoslovakia" "Hungary" "Brazil" ...
+ $ third       : chr  "USA" "Germany" "Brazil" "Sweden" ...
+ $ fourth      : chr  "Yugoslavia" "Austria" "Sweden" "Spain" ...
+ $ goals_scored: int  70 70 84 88 140 126 89 89 95 97 ...
+ $ teams       : int  13 16 15 13 16 16 16 16 16 16 ...
+ $ games       : int  18 17 18 22 26 35 32 32 32 38 ...
+ $ attendance  : int  434000 395000 483000 1337000 943000 868000 776000 1614677 1673975 1774022 ...
+
+
+#Get a list of all variable names in the dataset
+
+names(football)
+Output:
+ [1] "year"         "host"         "winner"       "second"       "third"       
+ [6] "fourth"       "goals_scored" "teams"        "games"        "attendance"
+
+#Display the class and other information for each variable in the dataset
+class(football)
+
+Output:
+[1] "data.frame"
+
+
+#7 Display the class and other information for each variable in the dataset
+
+str(football)
+"This shows the structure, variables, and class"
+
+'data.frame': 21 obs. of 10 variables: \$ year : int 1930 1934 1938 1950
+1954 1958 1962 1966 1970 1974 ... \$ host : chr "Uruguay" "Italy"
+"France" "Brazil" ... \$ winner : chr "Uruguay" "Italy" "Italy"
+"Uruguay" ... \$ second : chr "Argentina" "Czechoslovakia" "Hungary"
+"Brazil" ... \$ third : chr "USA" "Germany" "Brazil" "Sweden" ... \$
+fourth : chr "Yugoslavia" "Austria" "Sweden" "Spain" ... \$
+goals_scored: int 70 70 84 88 140 126 89 89 95 97 ... \$ teams : int 13
+16 15 13 16 16 16 16 16 16 ... \$ games : int 18 17 18 22 26 35 32 32 32
+38 ... \$ attendance : int 434000 395000 483000 1337000 943000 868000
+776000 1614677 1673975 1774022 ...
+
+#8 Brainstorm, what questions could we answer with this
+
+- What years have the highest games in attendance?
+- Is there a relationship between wins and greater attandence? 
+- Is there any relationship between the variables "host" and "wins" ... ie is the host country's team more likely to win the game
