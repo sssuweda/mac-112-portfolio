@@ -7,6 +7,7 @@ editor:
 title: "Activity/Homework 01"
 author: Suweda Said
 
+```{r}
 # Import and name the dataset (Football)
 
 football <-
@@ -82,6 +83,8 @@ goals_scored: int 70 70 84 88 140 126 89 89 95 97 ... \$ teams : int 13
 16 15 13 16 16 16 16 16 16 ... \$ games : int 18 17 18 22 26 35 32 32 32
 38 ... \$ attendance : int 434000 395000 483000 1337000 943000 868000
 776000 1614677 1673975 1774022 ...
+
+'''{r}
 
 #8 Brainstorm, what questions could we answer with this
 

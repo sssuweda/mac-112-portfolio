@@ -13,14 +13,16 @@ book:
 
     - part: activities/README.qmd
       chapters: 
-      - activities/activity-01.qmd
       - activities/activity-02.qmd
       - activities/activity-03.qmd
-    
-    - part: notes/README.qmd
-      chapters: 
-      - notes/note-01.qmd
-      - notes/note-02.qmd
+      - activities/activity-04.qmd
+      - activities/activity-05.qmd
+      
+      
+    # - part: notes/README.qmd
+      # chapters: 
+      # - notes/note-01.qmd
+      # - notes/note-02.qmd
 
 format:
   html:
@@ -31,5 +33,5 @@ format:
     code-tools: true
 
 execute:
-  cache: true
-  freeze: auto
+  cache: false
+  freeze: false

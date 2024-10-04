@@ -1,0 +1,8 @@
+---
+title: "checkpoint2"
+editor: visual
+---
+
+install.packages("tidyverse")
+library(tidyverse)
+---

@@ -1,3 +1,18 @@
 ---
 title: "Note 01"
 ---
+```{r} {r eval=FALSE}
+
+#section 1 notes 
+
+#How to look at the first 6 entries in your data set
+#head(survey)
+
+#Convenient commands to use with surveys in R
+# Get a list of all variable names in the dataset
+#names(survey)
+
+
+
+```
+

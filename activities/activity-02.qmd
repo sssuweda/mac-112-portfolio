@@ -1,4 +1,11 @@
 ---
 title: "Activity 02"
+author: "Suweda Said"
 ---
+
+```{r}
+library(tidyverse)
+
+
+```
 

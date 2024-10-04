@@ -1,0 +1,22 @@
+title: "Activity 02"
+author: Suweda Said
+```{r}
+# Import data
+survey <- read.csv("https://ajohns24.github.io/data/112/about_us_2024.csv")
+
+# How many students have now filled out the survey?
+dim(survey)
+
+# What type of variables do we have?
+data.frame(survey)
+  #chr, int, dbl
+
+# Attach a package needed to use the ggplot function
+
+library(tidyverse)
+
+# Make a ggplot
+ggplot(survey, aes(x=cafe_mac)) + geom_bar()
+
+```
+

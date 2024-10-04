@@ -1,0 +1,401 @@
+---
+title: "Homework 2: Data Viz"
+execute: 
+  warning: true
+fig-height: 3
+fig-width: 5
+fig-align: center
+code-fold: true
+---
+
+::: {.callout-caution title="Goals"}
+The goal of this homework is to practice some basic data exploration and data viz in guided settings.
+:::
+
+::: {.callout-important title="Instructions"}
+-   Move this file to the **homeworks** folder in your Homework Quarto project and do not forgot to include it in the`_quarto.yml` file so that it get rendered in your website.
+-   Type your responses in this file
+-   You will not be able to render your website until after you've completed Exercise 0.
+-   Do not modify the structure of this document. e.g. don't change section headers and spacing
+-   After finishing, hit the Render Book button located in the Build menu in the upper-right panels area then head to GitHub Desktop --\> in the commit summary box, write HW2 ready for grading --\> commit --\> push
+-   The content of the exercises is not necessarily in the order that we learned it, so you'll need to practice identifying appropriate tools for a given task.
+:::
+
+# Exercise 0
+
+## Part a
+
+We'll be using some data stored in the `mosaic` and `fivethirtyeight` packages. Follow the instructions from Activity 3 to:
+
+-   Check whether you already have these packages.
+-   If not, install them.
+
+## Part b
+
+```{r}
+# Load packages we'll need for HW 2: tidyverse, mosaic, fivethirtyeight
+
+library(tidyverse)
+library(mosaic)
+library(fivethirtyeight)
+```
+
+\
+\
+\
+\
+
+# Exercise 1
+
+The `Birthdays` dataset in the `mosaic` package includes information on births in the United States. Run the chunk below which *wrangles* this information into a new dataset, `daily_births`, which records the total number of `births` per day in the U.S. between 1969 and 1988.
+
+::: {.callout-important title="Instructions"}
+Use `daily_births`, not `Birthdays` in the exercises.
+:::
+
+```{r}
+# Create the daily_births dataset
+# Don't worry about the code. We'll learn this in the next unit!
+data("Birthdays")
+daily_births <- Birthdays %>% 
+  group_by(date) %>% 
+  summarize(births = sum(births)) %>% 
+  mutate(year = year(date), 
+         month = month(date, label = TRUE),
+         day_of_month = mday(date),
+         day_of_week = wday(date, label = TRUE))
+```
+
+## Part a
+
+Let's get to know the data! Complete the tasks indicated by each comment in the chunk below. Put your code directly after the relevant comment.
+
+```{r}
+# Determine the number of data points we have
+dim("Birthdays")
+
+# Check out the first 6 rows of the dataset
+head("Birthdays")
+
+# Check out the structure / class of each variable in the dataset (1 line of code)
+
+data.frame("Birthdays")
+str(Birthdays)
+
+```
+
+\
+\
+
+## Part b
+
+Notice from your work in part a that `day_of_week` and `month` are special types of *categorical* variables: `Ord.factors` or **ordinal factors**. Explain what makes `day_of_week` and `month` *ordinal*.
+
+::: {.callout-important title="Instructions"}
+Looking up a definition of "ordinal" is fair, but you need to interpret the definition in the context of the variables here.
+:::
+
+::: {.callout-note title="Answer"}
+Days of the week and month are ordinal because they are technically numbers but exist within the same scale such as 1-31 for days of the week, and 1-12 for months of the year.
+:::
+
+\
+\
+
+## Part c
+
+What are the units of observation?
+
+::: {.callout-note title="Answer"}
+The units of observation are state, year, month, day, date, weekday, and number of births
+:::
+
+\
+\
+\
+\
+
+# Exercise 2
+
+Our general goal is to understand how births vary from day to day. Let's start by focusing on just the `births` variable.
+
+## Part a
+
+Construct *two* plots of `births`. Each plot should use a different layer / geometric element.
+
+```{r}
+# Plot 1
+ggplot (daily_births, aes(x=births)) + geom_histogram()
+
+```
+
+```{r}
+# Plot 2
+
+ggplot(daily_births, aes(x=births)) + geom_density()
+
+```
+
+## Part b
+
+Summarize your observations about daily births in the U.S. Tell a *cohesive* story here (not a list of distinct observations) that incorporates important aspects of quantitative variables: range, distribution / shape, typical outcome, outliers.
+
+::: {.callout-note title="Answer"}
+On most days there are 8,000-1,110 births, it is uncommon for more than 1,200 births to occur in a single day.
+:::
+
+\
+\
+\
+\
+
+# Exercise 3
+
+Your plots above illustrate that there's something interesting happening here! Perhaps it can be explained by changes in birth rates over *time*. For example, we might wonder: Have births increased or decreased? Have there been any peaks or valleys in births? Are there any seasonal trends?
+
+## Part a
+
+Construct a plot of births over time. Only use 2 variables in your plot and make sure that every data point is represented in the plot (not just a summary of trends). We'll come back to this later.
+
+```{r}
+
+ggplot(data=daily_births, aes(x=year, y=births)) + geom_point() 
+
+
+
+```
+
+```{r}
+ggplot(data = daily_births, aes(x=year, y=births, color = month)) + geom_point() 
+
+
+```
+
+## Part b
+
+Summarize your observation about births over time. Be sure to comment on the following:
+
+-   What are the longer-term birth trends over time (on the scale of years)?
+-   Are there any seasonal trends within years (on the scale of months)?
+-   What other interesting or unusual patterns do you notice?!?
+
+::: {.callout-note title="Answer"}
+The births begins to decrease at 1970 and then gradually increase past 1975.
+:::
+
+\
+\
+\
+\
+
+# Exercise 4
+
+Your above plot of births over time has an interesting pattern: there seem to be 2-3 distinct groups of points. Let's sleuth it out.
+
+## Part a
+
+Starting from your plot of births over time from above, add a new scale / variable that explains the distinction between the distinct groups.
+
+::: {.callout-important title="Instructions"}
+Use your intuition--What variables do we have that might explain the 2 groups? and play around. If you get stuck, move on to Exercise 5 and come back.
+:::
+
+```{r}
+
+ggplot(data=daily_births, aes(x=year, y=births, fill=day_of_week)) + geom_point() 
+
+
+```
+
+## Part b
+
+Explain in words *what* is going on here (e.g. "over time, there tend to be more births on... than on....") and *why* you think this is happening. NOTE: The "why" might be challenging, so just do your best.
+
+::: {.callout-note title="Answer"}
+The increase in birth rates past 1975 could be due to political/socio-economic concerns like the war in Vietnam. In the year 1975 many U.S soldier returned and following 1975 the birth rate gradually increases.
+:::
+
+\
+\
+\
+\
+
+# Exercise 5
+
+Let's dig into weekly and monthly birth trends.
+
+## Part a
+
+Construct 2 plots that illustrate how birth rates might vary by month, one using density plots and another using boxplots. One of these will be more useful than the other!
+
+```{r}
+ggplot(data=daily_births, aes(x=births, color=month)) + geom_density()
+
+```
+
+## Part b
+
+Construct a plot that illustrates how birth rates might vary by day of the week.
+
+```{r}
+ggplot(data=daily_births, aes(x=year, y=births)) + geom_boxplot() + facet_wrap(~ month)
+```
+
+## Part c
+
+Summarize your observations from parts a and b. Do birth rates tend to be higher in some months than others? Or higher on some days of the weeks than others? Explain.
+
+::: {.callout-important title="Instructions"}
+If you skipped Exercise 4, you now have the hints.
+:::
+
+::: {.callout-note title="Answer"}
+PLACE YOUR ANSWER IN THIS CALLOUT BOX
+:::
+
+\
+\
+\
+\
+
+# Exercise 6
+
+In the remaining exercises, we'll explore new data. The "Bechdel test" tests whether movies meet the following criteria:
+
+-   there are at least 2 characters that identify as women
+-   these characters talk to each other
+-   at least 1 time, they talk about something other than men
+
+In the fivethirtyeight.com article ["The Dollar-And-Cents Case Against Hollywood's Exclusion of Women"](http://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/), the authors analyze which Hollywood movies do/don't pass the test. Their data are available in the `fivethirtyeight` package\
+Run the chunk below which *wrangles* this information into a new dataset, `new_bechdel`, which tidies up some of the categorical variables.
+
+```{r}
+# Create the new_bechdel dataset
+# Don't worry about the code. We'll learn this in the next unit!
+data(bechdel)
+new_bechdel <- bechdel %>%
+  mutate(clean_test = factor(clean_test, c("nowomen", "notalk", "men", "dubious", "ok"))) %>%
+  mutate(half_decades = cut(year, breaks = seq(1969, 2014, by = 5)))
+```
+
+::: {.callout-important title="Instructions"}
+-   Use `new_bechdel`, not `bechdel` in the exercises.
+-   Before using the `new_bechdel` data, check out the codebook by typing `?bechdel` in the **CONSOLE**.
+:::
+
+## Part a
+
+Construct a plot that addresses the following research question: Do bigger budgets (`budget_2013`) pay off with greater box office returns (`domgross_2013`)? In constructing this plot:
+
+-   Include a layer that represents each individual film in the dataset. There are a lot of data points, so use transparency to improve the visualization.
+-   Include a layer that highlights the *trends* in this relationship.
+-   Pay attention to which of these is the *response* variable and which is the *predictor*.
+
+```{r}
+bechdel %>% summarize(median(budget_2013))
+bechdel %>% ggplot(aes (x=budget_2013, y=domgross_2013)) +geom_point()
+```
+
+## Part b
+
+Create new plot, which tweaks the plot in part a, that addresses the following research question: Does the dependence of box office returns on budget differ among films that do and do not pass the Bechdel test? In examining the Bechdel test, use a variable that simply captures PASS or FAIL for each film.
+
+```{r}
+bechdel  %>% count(binary)
+
+bechdel %>% ggplot(aes (x=budget_2013, y=domgross_2013, color=binary)) +
+  geom_point()
+
+```
+
+## Part c
+
+Summarize your observations about the relationship between box office returns and budget, and how (if at all) this differs between films that do and do not pass the Bechdel test.
+
+::: {.callout-note title="Answer"}
+Movies that fail the bechdel test can still have a high gross rate, out of the highest grossing films few pass the bechdel test.
+:::
+
+\
+\
+\
+\
+
+# Exercise 7
+
+The `clean_test` variable goes into more detail than the `binary` variable. Not only does it indicate whether a film passes the test, it indicates *why* a failing film fails. Read more about it in the codebook.
+
+## Part a
+
+Construct a plot of the `clean_test` variable that allows us to explore the number of films that fall into each category.
+
+```{r}
+bechdel  %>% count(clean_test)
+bechdel %>% ggplot(aes (x=clean_test)) +geom_bar()
+```
+
+## Part b
+
+Among films that fail the Bechdel test, what's the primary reason?
+
+::: {.callout-note title="Answer"}
+Out of the films that fail the bechdel test, the majority of them fall into the "no talk" category, this means that there were fewer than two\
+women in the film.
+:::
+
+\
+
+## Part c
+
+Consider two more questions: How are the films in the data set distributed across half decades, i.e. 5-year periods (`half_decades`)? And within each `half_decade`, how are the films distributed across Bechdel categories (`clean_test`)? Construct a single plot that answers both of these questions. Your y-axis should reflect *counts*, i.e. numbers of movies.
+
+```{r}
+new_bechdel %>% ggplot(aes (x=half_decades, fill=clean_test))+ geom_bar()
+```
+
+\
+\
+\
+\
+
+# Exercise 8
+
+NOTE: The following exercise is inspired by a similar exercise by Albert Kim, a `fivethirtyeight` package co-author.
+
+The plot in Exercise 7 illustrates that more of the films in our dataset are more recent, but it's not easy to examine the breakdown of the Bechdel test in each 5-year period. To that end, return to the fivethirtyeight.com article (linked above and in the codebook) and examine the plot titled "The Bechdel Test Over Time".
+
+## Part a
+
+Summarize the trends captured by this plot. (How has the representation of women in movies evolved over time?)
+
+::: {.callout-note title="Answer"}
+As the values on the X-axis increase, the category of "ok" gross, this mean as time goes on more movies begin to pass the bechdel test.
+:::
+
+\
+\
+
+## Part b
+
+Recreate this plot from the article! Your plot won't look *exactly* like the authors', but should be close to that below. You'll need to add the following layer to get a similar color scheme:
+
+```{r eval=FALSE}
+scale_fill_manual(values = c("red", "salmon", "pink", "steelblue1", "steelblue4"))
+```
+
+```{r, out.width = "800px",echo=FALSE, fig.alt='Proportional barplot of Bechdel test results across 5 year time periods. An increasing number of movies pass the Bechdel test over time but still only make up about 50% of the movies in the most recent time period.'}
+knitr::include_graphics("https://mac-stat.github.io/images/112/bechdel_hist.png")
+```
+
+```{r fig.width = 8, fig.height = 5.5}
+
+```
+
+\
+\
+\
+\
+
+# Finalize your homework
+
+-   Congratulation 🎉. You're done with Homework 2. See the instruction above for how to submit your work.

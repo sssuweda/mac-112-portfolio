@@ -1,3 +1,13 @@
 ---
 title: "Note 02"
+author: "Suweda Said"
+
+#reading notes
+
+#topic rstudio workshop
+    #Get a list of all variable names in the dataset
+> names(survey)
+#How to look at the first 6 entries in your data set
+> head(survey)
+
 ---
