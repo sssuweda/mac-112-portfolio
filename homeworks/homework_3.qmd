@@ -107,7 +107,7 @@ In this exercise, you are going to create a single Leaflet map of some of your f
 
 Create a data set using the tribble() function that has 10-15 rows of your favorite places. The columns will be the name of the location, the latitude, the longitude, and a column that indicates if it is in your top 3 favorite locations or not. For an example of how to use tribble(), look at the `favorite_stp` that is created manually below.
 
-```{r}
+```{r eval=FALSE}
 # Brianna's favorite St. Paul places - Used Google Maps to get coordinates
 # https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop
 favorite_stp <- tibble(
@@ -231,34 +231,26 @@ Tips:
 
 #### Viz 1
 
+```{r eval=FALSE}
+library(readr)
+library(tidyverse)
+plants <- ("/Users/suwedasaid/Documents/GitHub/mac-112-portfolio/homeworks/planting_2021.csv")
 
+ggplot(plants, aes(x=number_seeds_planted)) + geom_histogram()
 
-
-
-
-
-
-\
-\
-\
-\
-
-
+```
 
 #### Viz 2
 
-
-
-
-
-
-
-
-\
-\
-\
-\
+```{r eval=FALSE}
+ggplot(plants, aes(x=vegetable, fill=variety)) + geom_bar()
+```
 
 
 
 #### Viz 3
+
+```{r eval=FALSE}
+ggplot(data=plants, aes(x=vegetable, y=number_seeds_planted)) + geom_boxplot()
+```
+
